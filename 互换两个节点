@@ -1,0 +1,12 @@
+function replaceEach(aNode,bNode){
+				//1、获取a和b的父节点
+				var aParentNode = aNode.parentNode;
+				var bParentNode = bNode.parentNode;
+				//判断aParentNode和bParentNode是否存在
+				if (aParentNode && bParentNode) {
+					//2、克隆aNode或bNode
+					var aNodeTemp = aNode.cloneNode(true);
+					//3、分别调用aNode和bNode的父节点的replaceChild（）方法实现节点的互换
+					bParentNode.replaceChild(aNodeTemp,bNode);
+					aParentNode.replaceChild(bNode,aNode);
+				}
