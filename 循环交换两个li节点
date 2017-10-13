@@ -1,0 +1,47 @@
+<script type="text/javascript">
+			//实现两个li节点互换后并保存
+			window.onload = function(){
+				//1、获取所有的li节点
+				var liNodes = document.getElementsByTagName("li");
+				//2、为每一个li几点添加响应函数
+				for (var i=0; i < liNodes.length; i++) {
+					//手动为每个li节点添加一个index属性
+					liNodes[i].index = i;
+					liNodes[i].onclick = function(){
+						//3、找到和当前节点对应的li节点
+						var targetIndex = 0;
+						if (this.index < 4) {
+							targetIndex = 4 + this.index;
+						}else{
+							targetIndex = this.index - 4;
+							}
+						//交换index属性
+						var indexTemp = this.index;
+						this.index = liNodes[targetIndex].index;
+						liNodes[targetIndex].index = indexTemp;
+						//4、互换
+						replaceEach(this, liNodes[targetIndex]);
+					}
+				}
+				
+				
+			}
+			//自定义互换两个节点的函数
+			function replaceEach(aNode,bNode){
+				//1、获取a和b的父节点
+				var aParentNode = aNode.parentNode;
+				var bParentNode = bNode.parentNode;
+				//判断aParentNode和bParentNode是否存在
+				if (aParentNode && bParentNode) {
+					//2、克隆aNode或bNode
+					var aNodeTemp = aNode.cloneNode(true);
+					//交换onclick事件
+					aNodeTemp.onclick = aNode.onclick;
+					//交换index属性
+					aNodeTemp.index = aNode.index;
+					//3、分别调用aNode和bNode的父节点的replaceChild（）方法实现节点的互换
+					bParentNode.replaceChild(aNodeTemp,bNode);
+					aParentNode.replaceChild(bNode,aNode);
+				}
+			}
+		</script>
