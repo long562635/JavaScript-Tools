@@ -1,0 +1,12 @@
+window.onload = function(){
+				//为每一个li节点，添加一个confirm，确认是否删除该节点
+				var liNodes = document.getElementsByTagName("li");
+				for (var i = 0; i < liNodes.length; i++) {
+					liNodes[i].onclick = function(){
+						var flag = confirm("确定要删除"+ this.firstChild.nodeValue
+						+"的信息么？")
+						if (flag) {
+							this.parentNode.removeChild(this);
+						}
+					}
+				}
