@@ -1,0 +1,11 @@
+function insertAfter (newNode,refNode){
+				var parentNode = refNode.parentNode;
+				if (parentNode) {
+					var lastNode = parentNode.lastChild;
+					if (refNode == lastNode) {
+						parentNode.appendChild(newNode);
+					} else{
+						var nextNode = refNode.nextSibling;
+						parentNode.insertBefore(newNode,nextNode);
+					}
+				}
